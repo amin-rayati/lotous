@@ -1,3 +1,12 @@
+@font-face {
+  font-family: 'IranSans';
+  src: local('IranSans'),
+    url(../public/fonts/5c53f1a72f61b5b51e2ea79a22ebc38b.ttf) format('truetype');
+}
+* {
+  font-family: 'IranSans';
+  box-sizing: border-box;
+}
 html,
 body {
   padding: 0;
@@ -11,6 +20,190 @@ a {
   text-decoration: none;
 }
 
-* {
-  box-sizing: border-box;
+@media only screen and (max-width: 350px) {
+  .historyBox {
+    width: 90%;
+    background: white;
+    border-radius: 12px;
+    text-align: center;
+    padding: 30px;
+    margin: auto;
+    cursor: pointer;
+    overflow-y: auto;
+    height: 250px !important;
+  }
+  .date {
+    width: 50%;
+    text-align: center;
+    border: 3px solid #ae1010;
+    padding: 10px;
+    height: 45px;
+    outline: none;
+    border-radius: 5px;
+  }
+}
+@media only screen and (max-width: 556px) {
+  .historyBox {
+    width: 90%;
+    background: white;
+    border-radius: 12px;
+    text-align: center;
+    padding: 30px;
+    margin: auto;
+    cursor: pointer;
+    overflow-y: auto;
+    height: 320px;
+  }
+}
+@media only screen and (min-width: 768px) {
+  .mainDiv {
+    background: white;
+    width: 50% !important;
+    border-radius: 16px;
+    padding: 30px 20px 30px 20px;
+    position: absolute;
+    top: 70%;
+  }
+}
+@media only screen and (min-width: 992px) {
+  .mainDiv {
+    background: white;
+    width: 40% !important;
+    border-radius: 16px;
+    padding: 30px 20px 30px 20px;
+    position: absolute;
+    top: 70%;
+  }
+}
+@media only screen and (min-width: 1200px) {
+  .mainDiv {
+    background: white;
+    width: 25% !important;
+    border-radius: 16px;
+    padding: 30px 20px 30px 20px;
+    position: absolute;
+    top: 70%;
+  }
+}
+.mainDiv {
+  background: white;
+  width: 80%;
+  border-radius: 16px;
+  padding: 30px 20px 30px 20px;
+  position: absolute;
+  top: 70%;
+}
+.mainImg {
+  text-align: center;
+  top: 0%;
+  position: absolute;
+  width: -webkit-fill-available;
+}
+.div {
+  background-image: url(../public//image//back.png) !important;
+  background-size: cover !important;
+  object-fit: contain;
+  background-repeat: repeat !important;
+}
+.displayFlex {
+  display: flex;
+  justify-content: center;
+}
+.mainBtn {
+  border-radius: 8px;
+  text-align: center;
+  margin: 10px 0 20px 0;
+  background-image: linear-gradient(to left, #ae1010, #661313);
+  padding: 10px 0 10px 0;
+  width: 50%;
+  border: none;
+  color: white;
+  font-size: 15px;
+  font-weight: bold;
+  cursor: pointer;
+}
+.mainBox {
+  width: 80%;
+  background: white;
+  border-radius: 12px;
+  text-align: center;
+  padding: 30px;
+  margin: auto;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+}
+.clockBox {
+  width: 80%;
+  background: white;
+  border-radius: 12px;
+  text-align: right;
+  padding: 30px;
+  margin: auto;
+  justify-content: space-between;
+}
+.tableBox {
+  width: 80%;
+  background: white;
+  border-radius: 12px;
+  text-align: right;
+  padding: 5px 30px 5px 30px;
+  margin: auto;
+  justify-content: space-between;
+}
+.continueBtn {
+  border-radius: 8px;
+  text-align: center;
+  margin: 10px 0 20px 0;
+  background-image: linear-gradient(to left, #ae1010, #661313);
+  padding: 10px 0 10px 0;
+  width: 40%;
+  border: none;
+  color: white;
+  font-size: 15px;
+  font-weight: bold;
+  cursor: pointer;
+}
+.tableDiv {
+  padding: 20px;
+  border-radius: 10px;
+  text-align: center;
+  margin: 5px 0 5px 0;
+  cursor: pointer;
+}
+.Tablebadge {
+  display: block;
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+}
+.date {
+  width: 30%;
+  text-align: center;
+  border: 3px solid #ae1010;
+  padding: 10px;
+  height: 45px;
+  outline: none;
+  border-radius: 5px;
+}
+.historyBox {
+  width: 90%;
+  background: white;
+  border-radius: 12px;
+  text-align: center;
+  padding: 30px;
+  margin: auto;
+  cursor: pointer;
+  overflow-y: auto;
+  height: 320px;
+}
+.forceLoginBox {
+  width: 80%;
+  background: white;
+  border-radius: 12px;
+  text-align: center;
+  padding: 30px;
+  margin: auto;
+  cursor: pointer;
+  justify-content: space-between;
 }

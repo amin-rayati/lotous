@@ -1,0 +1,38 @@
+.loginInput {
+  direction: rtl;
+  border: none;
+  border-bottom: 1px solid #6a7270;
+  width: 90%;
+  font-weight: 100;
+  font-size: 12px;
+  padding: 10px;
+  outline: none;
+  padding-right: 30px !important;
+  margin-top: 30px;
+}
+.loginInputSelect {
+  direction: rtl;
+  border: none;
+  border-bottom: 1px solid #6a7270;
+  width: 90%;
+  font-weight: 100;
+  font-size: 12px;
+  padding: 0px;
+  outline: none;
+  margin-top: 30px;
+}
+.loginInputError {
+  direction: rtl;
+  border: none;
+  border-bottom: 1px solid #ae1010;
+  width: 90%;
+  font-weight: 100;
+  font-size: 12px;
+  padding: 10px;
+  outline: none;
+  padding-right: 30px !important;
+  margin-top: 30px;
+}
+.css-1hf1o2u-container {
+  border: none !important;
+}

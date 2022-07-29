@@ -6,15 +6,37 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "prod_start": "NODE_ENV=production node server.js"
   },
   "dependencies": {
+    "@emotion/react": "^11.9.3",
+    "@emotion/styled": "^11.9.3",
+    "@mui/material": "^5.9.1",
+    "@mui/x-date-pickers": "latest",
+    "@types/react": "latest",
+    "@types/react-dom": "latest",
+    "axios-react": "^2.0.8",
+    "bootstrap": "^5.2.0",
+    "date-fns": "latest",
     "next": "12.2.2",
     "react": "18.2.0",
-    "react-dom": "18.2.0"
+    "react-bootstrap": "^2.4.0",
+    "react-cookie": "^4.1.1",
+    "react-datepicker2": "^3.3.13",
+    "react-dom": "18.2.0",
+    "react-icons": "^4.4.0",
+    "react-router-dom": "^6.3.0",
+    "react-select": "^5.4.0",
+    "sweetalert2-react": "^0.8.3"
   },
   "devDependencies": {
     "eslint": "8.20.0",
     "eslint-config-next": "12.2.2"
-  }
+  },
+  "description": "This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).",
+  "main": "next.config.js",
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
 }

@@ -114,3 +114,29 @@
     flex-direction: column;
   }
 }
+.registerBtn {
+  border-radius: 8px;
+  text-align: center;
+  margin: 10px 0 20px 0;
+  background-image: linear-gradient(to left, #ae1010, #661313);
+  padding: 15px 0 15px 0;
+  width: 80%;
+  border: none;
+  color: white;
+  font-size: 15px;
+  font-weight: bold;
+  cursor: pointer;
+}
+.loginBtn {
+  border-radius: 8px;
+  text-align: center;
+  margin: 10px 0 20px 0;
+  background-color: white;
+  padding: 12px 0 12px 0;
+  width: 80%;
+  border: 3px solid #ae1010;
+  color: #ae1010;
+  font-size: 15px;
+  font-weight: bold;
+  cursor: pointer;
+}
