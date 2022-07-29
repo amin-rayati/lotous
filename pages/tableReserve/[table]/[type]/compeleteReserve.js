@@ -108,16 +108,16 @@ export default function Home({ data }) {
           setLoading(false)
           ModalClose()
 
-          Swal.fire({
-            type: 'success',
-            text: 'میز شما رزرو شد',
-            confirmButtonText: 'فهمیدم',
-            onAfterClose: () => {
-              getReservedTable()
-            },
-          })
+          router.push(response.data.data)
 
-          // router.push('/')
+          // Swal.fire({
+          //   type: 'success',
+          //   text: 'میز شما رزرو شد',
+          //   confirmButtonText: 'فهمیدم',
+          //   onAfterClose: () => {
+          //     getReservedTable()
+          //   },
+          // })
         }
       })
       .catch((error) => {
