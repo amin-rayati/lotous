@@ -165,7 +165,8 @@ a {
   cursor: pointer;
 }
 .tableDiv {
-  padding: 20px;
+  height: 90px;
+  padding: 33px;
   border-radius: 10px;
   text-align: center;
   margin: 5px 0 5px 0;

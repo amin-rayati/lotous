@@ -2,7 +2,7 @@ import Head from 'next/head'
 import { React, useEffect, useRef } from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
-import styles from '../../styles/home.module.css'
+import styles from '../../styles/Home.module.css'
 import mainImg from '../../public/image/mainImg.png'
 
 export default function Home() {

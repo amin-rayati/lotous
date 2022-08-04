@@ -31,8 +31,12 @@ export default function Home() {
 
   const handleDurationChange = (e) => {
     if (e.target.value.length <= 1) {
-      if (e.target.value > 0 && e.target.value < 10) {
-        setDuration(e.target.value)
+      if (e.target.value < 10) {
+        if (e.target.value === '0') {
+          e.preventDefault()
+        } else {
+          setDuration(e.target.value)
+        }
       }
     }
   }
@@ -98,6 +102,7 @@ export default function Home() {
                         padding: '15px',
                         outline: 'none',
                       }}
+                      min='1'
                     />
                   </div>
                 </div>

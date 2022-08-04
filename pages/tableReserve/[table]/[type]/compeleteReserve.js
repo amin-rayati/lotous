@@ -4,6 +4,7 @@ import { useRouter } from 'next/router'
 import Link from 'next/link'
 import axios from 'axios'
 import Swal from 'sweetalert2'
+import Skeleton from '@mui/material/Skeleton'
 
 import Footer from '../../../../components/Footer/Footer'
 import { Cookies, useCookies } from 'react-cookie'
@@ -22,6 +23,7 @@ export default function Home({ data }) {
   const { type } = router.query
   const [cookies, setCookie, removeCookie] = useCookies(['user'])
   const [loading, setLoading] = useState(false)
+  const [loading1, setLoading1] = useState(false)
 
   const {
     inTime,
@@ -43,6 +45,7 @@ export default function Home({ data }) {
   const ModalShow = () => setShowModal(true)
 
   const getReservedTable = async () => {
+    setLoading1(true)
     const res = await fetch(
       `https://pool.demoworks.ir/admin/Tables/API/_availableTables?token=test`,
       {
@@ -58,6 +61,9 @@ export default function Home({ data }) {
     )
     const data = await res.json()
     if (data.isDone) {
+      setTimeout(() => {
+        setLoading1(false)
+      }, 2000)
       setReservedList(data.data)
     }
   }
@@ -137,6 +143,10 @@ export default function Home({ data }) {
     }
   }
 
+  const nummber = (number) => {
+    return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')
+  }
+
   useEffect(() => {
     elementRef.current.style.height = `${window.innerHeight}px`
     if (cookies['user']) {
@@ -176,11 +186,27 @@ export default function Home({ data }) {
                       <div
                         className='row '
                         style={{
-                          justifyContent: 'space-between',
+                          justifyContent: 'space-around',
                           direction: 'rtl',
                         }}
                       >
-                        {reservedList &&
+                        {loading1 ? (
+                          <>
+                            <Skeleton
+                              sx={{ height: 90 }}
+                              animation='wave'
+                              variant='rectangular'
+                              className='col-5 tableDiv'
+                            />
+                            <Skeleton
+                              sx={{ height: 90 }}
+                              animation='wave'
+                              variant='rectangular'
+                              className='col-5 tableDiv'
+                            />
+                          </>
+                        ) : (
+                          reservedList &&
                           reservedList.map((e) => {
                             return (
                               <div
@@ -201,7 +227,8 @@ export default function Home({ data }) {
                                 </span>
                               </div>
                             )
-                          })}
+                          })
+                        )}
                       </div>
                       <div
                         className='row mt-3 '
@@ -230,12 +257,6 @@ export default function Home({ data }) {
                       </div>
                     </div>
                   </div>
-
-                  {/* <div className='my-2'>
-                <button onClick={ModalShow} className='continueBtn'>
-                  ادامه
-                </button>
-              </div> */}
                 </div>
               </div>
             </div>
@@ -259,7 +280,14 @@ export default function Home({ data }) {
                   {selectedTable['tableTypeName']} میز
                 </p>
                 <p style={{ direction: 'rtl' }}>
-                  {selectedTable['price']} تومان
+                  هر ساعت :{nummber(selectedTable && selectedTable['price'])}{' '}
+                  تومان
+                </p>
+
+                <p style={{ direction: 'rtl' }}>
+                  قابل پرداخت :
+                  {nummber(selectedTable && selectedTable['price'] * duration)}{' '}
+                  تومان
                 </p>
                 <div className='my-2'>
                   <button onClick={ReserveTable} className='continueBtn'>
