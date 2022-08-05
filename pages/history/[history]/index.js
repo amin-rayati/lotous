@@ -93,91 +93,93 @@ export default function Home({ data }) {
         ) : state ? (
           <>
             <div className='div'>
-              <Header />
-              <div style={{ marginTop: '60px' }}>
-                <h2 style={{ color: '#AE1010', fontWeight: 'bold' }}>
-                  سوابق رزرو میز
-                </h2>
-              </div>
+              <div className='mainResponsive'>
+                <Header />
+                <div style={{ marginTop: '60px' }}>
+                  <h2 style={{ color: '#AE1010', fontWeight: 'bold' }}>
+                    سوابق رزرو میز
+                  </h2>
+                </div>
 
-              <div className='mt-5'>
-                <DatePicker
-                  onChange={handleDateChange}
-                  placeholder='انتخاب تاریخ'
-                  timePicker={false}
-                  isGregorian={false}
-                  className='date'
-                  max={{ after: today }}
-                />
-              </div>
-              <div className=' pb-5 pt-3'>
-                <div className='historyBox'>
-                  <div>
-                    {reserveList ? (
-                      reserveList.length > 0 ? (
-                        <>
-                          <div>
-                            <div
-                              className='d-flex'
-                              style={{ justifyContent: 'space-between' }}
-                            >
-                              <p
-                                style={{
-                                  fontSize: '12px',
-                                  color: '#AE1010',
-                                  margin: 'auto',
-                                }}
+                <div className='mt-5'>
+                  <DatePicker
+                    onChange={handleDateChange}
+                    placeholder='انتخاب تاریخ'
+                    timePicker={false}
+                    isGregorian={false}
+                    className='date'
+                    max={{ after: today }}
+                  />
+                </div>
+                <div className=' pb-5 pt-3'>
+                  <div className='historyBox'>
+                    <div>
+                      {reserveList ? (
+                        reserveList.length > 0 ? (
+                          <>
+                            <div>
+                              <div
+                                className='d-flex'
+                                style={{ justifyContent: 'space-between' }}
                               >
-                                {
-                                  document.getElementsByClassName(
-                                    'datepicker-input'
-                                  )[0].value
-                                }
-                              </p>
-                              <hr style={{ width: '100%' }} />
-                            </div>
+                                <p
+                                  style={{
+                                    fontSize: '12px',
+                                    color: '#AE1010',
+                                    margin: 'auto',
+                                  }}
+                                >
+                                  {
+                                    document.getElementsByClassName(
+                                      'datepicker-input'
+                                    )[0].value
+                                  }
+                                </p>
+                                <hr style={{ width: '100%' }} />
+                              </div>
 
-                            {reserveList.map((e) => {
-                              return (
-                                <>
-                                  <div
-                                    key={e.id}
-                                    className='d-flex my-2'
-                                    style={{
-                                      justifyContent: 'space-between',
-                                    }}
-                                  >
-                                    <p style={{ direction: 'rtl' }}>
-                                      {e.sans} ساعت
-                                    </p>
-                                    <p style={{ textAlign: 'right' }}>
-                                      {e.vip == '0' ? ' عادی ' : ' ویژه  '}
-                                      <span> </span>
-                                      شماره
-                                      <span> </span>
-                                      {e.tableNumber}
-                                      <span> </span>
-                                      {e.type}
-                                      <span> </span>
-                                      میز
-                                    </p>
-                                  </div>
-                                </>
-                              )
-                            })}
-                          </div>
-                        </>
+                              {reserveList.map((e) => {
+                                return (
+                                  <>
+                                    <div
+                                      key={e.id}
+                                      className='d-flex my-2'
+                                      style={{
+                                        justifyContent: 'space-between',
+                                      }}
+                                    >
+                                      <p style={{ direction: 'rtl' }}>
+                                        {e.sans} ساعت
+                                      </p>
+                                      <p style={{ textAlign: 'right' }}>
+                                        {e.vip == '0' ? ' عادی ' : ' ویژه  '}
+                                        <span> </span>
+                                        شماره
+                                        <span> </span>
+                                        {e.tableNumber}
+                                        <span> </span>
+                                        {e.type}
+                                        <span> </span>
+                                        میز
+                                      </p>
+                                    </div>
+                                  </>
+                                )
+                              })}
+                            </div>
+                          </>
+                        ) : (
+                          <h6> !هیچ میزی در این تاریخ رزرو نکردید</h6>
+                        )
                       ) : (
-                        <h6> !هیچ میزی در این تاریخ رزرو نکردید</h6>
-                      )
-                    ) : (
-                      <h6> !لطفا یک تاریخ را انتخاب کنید</h6>
-                    )}
+                        <h6> !لطفا یک تاریخ را انتخاب کنید</h6>
+                      )}
+                    </div>
                   </div>
                 </div>
               </div>
+              <FooterHome />
             </div>
-            <FooterHome />
           </>
         ) : (
           <ForceLogin />

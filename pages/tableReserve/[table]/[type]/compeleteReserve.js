@@ -1,13 +1,14 @@
 import Head from 'next/head'
 import { React, useEffect, useRef, useState } from 'react'
 import { useRouter } from 'next/router'
-import Link from 'next/link'
+
 import axios from 'axios'
 import Swal from 'sweetalert2'
 import Skeleton from '@mui/material/Skeleton'
 
 import Footer from '../../../../components/Footer/Footer'
 import { Cookies, useCookies } from 'react-cookie'
+import Link from 'next/link'
 import { Modal, ThemeProvider } from 'react-bootstrap'
 
 import Header from '../../../../components/Header/Header'
@@ -33,6 +34,11 @@ export default function Home({ data }) {
     tableName,
     setUserData,
     userData,
+
+    cart,
+    setCart,
+    addToCart,
+    removeFromCartTotaly,
   } = useProjectContext()
 
   const [reservedList, setReservedList] = useState('')
@@ -91,46 +97,6 @@ export default function Home({ data }) {
       })
   }
 
-  const ReserveTable = () => {
-    setLoading(true)
-
-    axios
-      .post(
-        'https://pool.demoworks.ir/admin/Reservations/API/_reserveTable?token=test',
-        {
-          customerId: userData['id'],
-          table_id: selectedTable['id'],
-          start: inTime.toString().split(' ')['4'],
-          sans: duration,
-        },
-        {
-          headers: {
-            token: 'test',
-          },
-        }
-      )
-      .then((response) => {
-        if (response.data.isDone) {
-          setLoading(false)
-          ModalClose()
-
-          router.push(response.data.data)
-
-          // Swal.fire({
-          //   type: 'success',
-          //   text: 'میز شما رزرو شد',
-          //   confirmButtonText: 'فهمیدم',
-          //   onAfterClose: () => {
-          //     getReservedTable()
-          //   },
-          // })
-        }
-      })
-      .catch((error) => {
-        console.error(error)
-      })
-  }
-
   const handleModal = (e) => {
     if (e.available) {
       ModalShow()
@@ -172,131 +138,156 @@ export default function Home({ data }) {
           <>
             {' '}
             <div className='div py-3'>
-              <Header />
+              <div className='mainResponsive'>
+                <Header />
 
-              <div style={{ marginTop: '60px' }}>
-                <h2 style={{ color: '#AE1010', fontWeight: 'bold' }}>
-                  {type == 'ordinary' ? 'عادی' : 'vip'} {tableName} میز
-                </h2>
-              </div>
-              <div className='py-5'>
-                <div className=' my-3'>
-                  <div className='tableBox'>
-                    <div className='my-3'>
-                      <div
-                        className='row '
-                        style={{
-                          justifyContent: 'space-around',
-                          direction: 'rtl',
-                        }}
-                      >
-                        {loading1 ? (
-                          <>
-                            <Skeleton
-                              sx={{ height: 90 }}
-                              animation='wave'
-                              variant='rectangular'
-                              className='col-5 tableDiv'
-                            />
-                            <Skeleton
-                              sx={{ height: 90 }}
-                              animation='wave'
-                              variant='rectangular'
-                              className='col-5 tableDiv'
-                            />
-                          </>
-                        ) : (
-                          reservedList &&
-                          reservedList.map((e) => {
-                            return (
-                              <div
-                                key={e.id}
-                                onClick={() => {
-                                  setSelectedtable(e)
-                                  handleModal(e)
-                                }}
-                                className='col-5 tableDiv'
-                                style={
-                                  e.available
-                                    ? { background: '#10AE46' }
-                                    : { background: '#AE1010' }
-                                }
-                              >
-                                <span style={{ color: 'white' }}>
-                                  {e.number}
-                                </span>
-                              </div>
-                            )
-                          })
-                        )}
-                      </div>
-                      <div
-                        className='row mt-3 '
-                        style={{ justifyContent: 'right' }}
-                      >
+                <div style={{ marginTop: '60px' }}>
+                  <h2 style={{ color: '#AE1010', fontWeight: 'bold' }}>
+                    {type == 'ordinary' ? 'عادی' : 'vip'} {tableName} میز
+                  </h2>
+                </div>
+                <div className='py-5'>
+                  <div className=' my-3'>
+                    <div className='tableBox'>
+                      <div className='my-3'>
                         <div
-                          className='col-6 d-flex'
-                          style={{ justifyContent: 'space-around' }}
+                          className='row '
+                          style={{
+                            justifyContent: 'space-around',
+                            direction: 'rtl',
+                          }}
                         >
-                          <span style={{ fontSize: '10px' }}>میز پر</span>
-                          <span
-                            className='Tablebadge'
-                            style={{ background: '#AE1010' }}
-                          ></span>
+                          {loading1 ? (
+                            <>
+                              <Skeleton
+                                sx={{ height: 90 }}
+                                animation='wave'
+                                variant='rectangular'
+                                className='col-5 tableDiv'
+                              />
+                              <Skeleton
+                                sx={{ height: 90 }}
+                                animation='wave'
+                                variant='rectangular'
+                                className='col-5 tableDiv'
+                              />
+                            </>
+                          ) : (
+                            reservedList &&
+                            reservedList.map((e) => {
+                              return (
+                                <div
+                                  key={e.id}
+                                  onClick={() => {
+                                    setSelectedtable(e)
+                                    handleModal(e)
+                                  }}
+                                  className='col-5 tableDiv'
+                                  style={
+                                    e.available
+                                      ? { background: '#10AE46' }
+                                      : { background: '#AE1010' }
+                                  }
+                                >
+                                  <span style={{ color: 'white' }}>
+                                    {e.number}
+                                  </span>
+                                </div>
+                              )
+                            })
+                          )}
                         </div>
                         <div
-                          className='col-6 d-flex'
-                          style={{ justifyContent: 'space-around' }}
+                          className='row mt-3 '
+                          style={{ justifyContent: 'right' }}
                         >
-                          <span style={{ fontSize: '10px' }}>میز خالی</span>
-                          <span
-                            className='Tablebadge'
-                            style={{ background: '#10AE46' }}
-                          ></span>
+                          <div
+                            className='col-6 d-flex'
+                            style={{ justifyContent: 'space-around' }}
+                          >
+                            <span style={{ fontSize: '10px' }}>میز پر</span>
+                            <span
+                              className='Tablebadge'
+                              style={{ background: '#AE1010' }}
+                            ></span>
+                          </div>
+                          <div
+                            className='col-6 d-flex'
+                            style={{ justifyContent: 'space-around' }}
+                          >
+                            <span style={{ fontSize: '10px' }}>میز خالی</span>
+                            <span
+                              className='Tablebadge'
+                              style={{ background: '#10AE46' }}
+                            ></span>
+                          </div>
                         </div>
                       </div>
                     </div>
                   </div>
                 </div>
               </div>
-            </div>
-            <Modal show={showModal} onHide={ModalClose} centered size='sm'>
-              <Modal.Header
-                style={{ justifyContent: 'center', borderBottom: 'none' }}
-              >
-                <p style={{ fontWeight: 'bold' }}>
-                  {selectedTable['number']} رزرو میز شماره
-                </p>
-              </Modal.Header>
-              <Modal.Body style={{ textAlign: 'center' }}>
-                <p
-                  style={{
-                    color: '#AE1010',
-                    fontWeight: 'bold',
-                    fontSize: '20px',
-                  }}
+              <Modal show={showModal} onHide={ModalClose} centered size='md'>
+                <Modal.Header
+                  style={{ justifyContent: 'center', borderBottom: 'none' }}
                 >
-                  {type == 'ordinary' ? 'عادی' : 'vip'}{' '}
-                  {selectedTable['tableTypeName']} میز
-                </p>
-                <p style={{ direction: 'rtl' }}>
-                  هر ساعت :{nummber(selectedTable && selectedTable['price'])}{' '}
-                  تومان
-                </p>
+                  <p style={{ fontWeight: 'bold' }}>
+                    {selectedTable['number']} رزرو میز شماره
+                  </p>
+                </Modal.Header>
+                <Modal.Body style={{ textAlign: 'center' }}>
+                  <p
+                    style={{
+                      color: '#AE1010',
+                      fontWeight: 'bold',
+                      fontSize: '20px',
+                    }}
+                  >
+                    {type == 'ordinary' ? 'عادی' : 'vip'}{' '}
+                    {selectedTable['tableTypeName']} میز
+                  </p>
+                  <p style={{ direction: 'rtl' }}>
+                    هر ساعت :{nummber(selectedTable && selectedTable['price'])}{' '}
+                    تومان
+                  </p>
 
-                <p style={{ direction: 'rtl' }}>
-                  قابل پرداخت :
-                  {nummber(selectedTable && selectedTable['price'] * duration)}{' '}
-                  تومان
-                </p>
-                <div className='my-2'>
-                  <button onClick={ReserveTable} className='continueBtn'>
-                    {loading ? <Loading /> : 'رزرو'}
-                  </button>
-                </div>
-              </Modal.Body>
-            </Modal>
-            <Footer />
+                  <p style={{ direction: 'rtl' }}>
+                    قابل پرداخت :
+                    {nummber(
+                      selectedTable && selectedTable['price'] * duration
+                    )}{' '}
+                    تومان
+                  </p>
+                  <div className='my-2'>
+                    {!cart.hasOwnProperty(
+                      selectedTable && selectedTable['id']
+                    ) ? (
+                      <button
+                        onClick={() =>
+                          addToCart(
+                            selectedTable && selectedTable,
+                            inTime.toString().split(' ')['4'],
+                            duration,
+                            selectedTable['price'] * duration,
+                            type
+                          )
+                        }
+                        className='continueBtn'
+                      >
+                        افزودن به کارت
+                      </button>
+                    ) : (
+                      <>
+                        <Link href={`/card`}>
+                          <button className='continueBtn'> پرداخت</button>
+                        </Link>
+                      </>
+                    )}
+                  </div>
+                </Modal.Body>
+              </Modal>
+              <Footer />
+            </div>
           </>
         ) : (
           <ForceLogin />

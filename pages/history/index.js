@@ -30,54 +30,56 @@ export default function Home({ data }) {
         ) : state ? (
           <>
             <div className='div'>
-              <Header />
+              <div className='mainResponsive'>
+                <Header />
 
-              <div style={{ marginTop: '60px' }}>
-                <h2 style={{ color: '#AE1010', fontWeight: 'bold' }}>
-                  رزرو میز
-                </h2>
-              </div>
+                <div style={{ marginTop: '60px' }}>
+                  <h2 style={{ color: '#AE1010', fontWeight: 'bold' }}>
+                    رزرو میز
+                  </h2>
+                </div>
 
-              <div className='flex-column  py-5'>
-                <div className=' my-3'>
-                  <Link href='/history/table'>
-                    <div
-                      className='mainBox'
-                      style={{ justifyContent: 'center' }}
-                    >
-                      <h6 style={{ fontWeight: 'bold ', fontSize: '15px' }}>
-                        سوابق رزرو میز
-                      </h6>
-                    </div>
-                  </Link>
-                </div>
-                <div className=' my-3'>
-                  <Link href='/history'>
-                    <div
-                      className='mainBox'
-                      style={{ justifyContent: 'center' }}
-                    >
-                      <h6 style={{ fontWeight: 'bold ', fontSize: '15px' }}>
-                        سوابق شرکت در دوره های آموزشی
-                      </h6>
-                    </div>
-                  </Link>
-                </div>
-                <div className=' my-3'>
-                  <Link href='/history'>
-                    <div
-                      className='mainBox'
-                      style={{ justifyContent: 'center' }}
-                    >
-                      <h6 style={{ fontWeight: 'bold ', fontSize: '15px' }}>
-                        سوابق خرید از کافه
-                      </h6>
-                    </div>
-                  </Link>
+                <div className='flex-column  py-5'>
+                  <div className=' my-3'>
+                    <Link href='/history/table'>
+                      <div
+                        className='mainBox'
+                        style={{ justifyContent: 'center' }}
+                      >
+                        <h6 style={{ fontWeight: 'bold ', fontSize: '15px' }}>
+                          سوابق رزرو میز
+                        </h6>
+                      </div>
+                    </Link>
+                  </div>
+                  <div className=' my-3'>
+                    <Link href='/history'>
+                      <div
+                        className='mainBox'
+                        style={{ justifyContent: 'center' }}
+                      >
+                        <h6 style={{ fontWeight: 'bold ', fontSize: '15px' }}>
+                          سوابق شرکت در دوره های آموزشی
+                        </h6>
+                      </div>
+                    </Link>
+                  </div>
+                  <div className=' my-3'>
+                    <Link href='/history'>
+                      <div
+                        className='mainBox'
+                        style={{ justifyContent: 'center' }}
+                      >
+                        <h6 style={{ fontWeight: 'bold ', fontSize: '15px' }}>
+                          سوابق خرید از کافه
+                        </h6>
+                      </div>
+                    </Link>
+                  </div>
                 </div>
               </div>
+              <FooterHome />
             </div>
-            <FooterHome />
           </>
         ) : (
           <ForceLogin />

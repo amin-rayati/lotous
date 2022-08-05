@@ -58,64 +58,66 @@ export default function Home() {
         ) : state ? (
           <>
             <div className='div py-3'>
-              <Header />
+              <div className='mainResponsive'>
+                <Header />
 
-              <div style={{ marginTop: '60px' }}>
-                <h2 style={{ color: '#AE1010', fontWeight: 'bold' }}>
-                  {type == 'ordinary' ? 'عادی' : 'vip'} {tableName} میز
-                </h2>
-              </div>
+                <div style={{ marginTop: '60px' }}>
+                  <h2 style={{ color: '#AE1010', fontWeight: 'bold' }}>
+                    {type == 'ordinary' ? 'عادی' : 'vip'} {tableName} میز
+                  </h2>
+                </div>
 
-              <div className=' my-3 py-5'>
-                <div className='clockBox'>
-                  <p>ساعت ورود</p>
-                  <LocalizationProvider dateAdapter={AdapterDateFns}>
-                    <Stack spacing={3}>
-                      <TimePicker
-                        ampm={false}
-                        openTo='hours'
-                        views={['hours', 'minutes']}
-                        inputFormat='HH:mm'
-                        mask='__:__'
-                        label='.'
-                        value={date}
-                        minTime={new Date()}
-                        onChange={(newValue) => {
-                          setDate(newValue)
-                          setInTime(newValue)
+                <div className=' my-3 py-5'>
+                  <div className='clockBox'>
+                    <p>ساعت ورود</p>
+                    <LocalizationProvider dateAdapter={AdapterDateFns}>
+                      <Stack spacing={3}>
+                        <TimePicker
+                          ampm={false}
+                          openTo='hours'
+                          views={['hours']}
+                          inputFormat='HH'
+                          mask='__'
+                          label='.'
+                          value={date}
+                          minTime={new Date()}
+                          onChange={(newValue) => {
+                            setDate(newValue)
+                            setInTime(newValue)
+                          }}
+                          renderInput={(params) => <TextField {...params} />}
+                        />
+                      </Stack>
+                    </LocalizationProvider>
+                    <div className='my-3'>
+                      <p>زمان بازی</p>
+                      <input
+                        value={duration}
+                        onChange={handleDurationChange}
+                        type='number'
+                        style={{
+                          width: '100%',
+                          height: '50px',
+                          border: '1px solid #cdc8c8',
+                          borderRadius: '5px',
+                          padding: '15px',
+                          outline: 'none',
                         }}
-                        renderInput={(params) => <TextField {...params} />}
+                        min='1'
                       />
-                    </Stack>
-                  </LocalizationProvider>
+                    </div>
+                  </div>
                   <div className='my-3'>
-                    <p>زمان بازی</p>
-                    <input
-                      value={duration}
-                      onChange={handleDurationChange}
-                      type='number'
-                      style={{
-                        width: '100%',
-                        height: '50px',
-                        border: '1px solid #cdc8c8',
-                        borderRadius: '5px',
-                        padding: '15px',
-                        outline: 'none',
-                      }}
-                      min='1'
-                    />
+                    <Link
+                      href={`/tableReserve/${table}/${type}/compeleteReserve`}
+                    >
+                      <button className='continueBtn'>ادامه</button>
+                    </Link>
                   </div>
                 </div>
-                <div className='my-3'>
-                  <Link
-                    href={`/tableReserve/${table}/${type}/compeleteReserve`}
-                  >
-                    <button className='continueBtn'>ادامه</button>
-                  </Link>
-                </div>
               </div>
+              <Footer />
             </div>
-            <Footer />
           </>
         ) : (
           <ForceLogin />

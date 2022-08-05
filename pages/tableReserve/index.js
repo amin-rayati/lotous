@@ -49,41 +49,46 @@ export default function Home({ data }) {
         ) : state ? (
           <>
             <div className='div'>
-              <Header />
+              <div className='mainResponsive'>
+                <Header />
 
-              <div style={{ marginTop: '60px' }}>
-                <h2 style={{ color: '#AE1010', fontWeight: 'bold' }}>
-                  رزرو میز
-                </h2>
-              </div>
+                <div style={{ marginTop: '60px' }}>
+                  <h2 style={{ color: '#AE1010', fontWeight: 'bold' }}>
+                    رزرو میز
+                  </h2>
+                </div>
 
-              <div className='flex-column  py-5'>
-                {tableList &&
-                  tableList.map((e) => {
-                    return (
-                      <div
-                        onClick={() => setTableName(e.name)}
-                        key={e.id}
-                        className=' my-3'
-                      >
-                        <Link href={`/tableReserve/${e.id}`}>
-                          <div
-                            className='mainBox'
-                            style={{ justifyContent: 'center' }}
-                          >
-                            <h6
-                              style={{ fontWeight: 'bold ', fontSize: '15px' }}
+                <div className='flex-column  py-5'>
+                  {tableList &&
+                    tableList.map((e) => {
+                      return (
+                        <div
+                          onClick={() => setTableName(e.name)}
+                          key={e.id}
+                          className=' my-3'
+                        >
+                          <Link href={`/tableReserve/${e.id}`}>
+                            <div
+                              className='mainBox'
+                              style={{ justifyContent: 'center' }}
                             >
-                              {e.name}
-                            </h6>
-                          </div>
-                        </Link>
-                      </div>
-                    )
-                  })}
+                              <h6
+                                style={{
+                                  fontWeight: 'bold ',
+                                  fontSize: '15px',
+                                }}
+                              >
+                                {e.name}
+                              </h6>
+                            </div>
+                          </Link>
+                        </div>
+                      )
+                    })}
+                </div>
               </div>
+              <Footer />
             </div>
-            <Footer />
           </>
         ) : (
           <ForceLogin />

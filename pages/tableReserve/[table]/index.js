@@ -36,43 +36,45 @@ const Home = () => {
           <>
             {' '}
             <div className='div'>
-              <Header />
+              <div className='mainResponsive'>
+                <Header />
 
-              <div style={{ marginTop: '60px' }}>
-                <h2 style={{ color: '#AE1010', fontWeight: 'bold' }}>
-                  {' '}
-                  {tableName} میز
-                </h2>
-              </div>
+                <div style={{ marginTop: '60px' }}>
+                  <h2 style={{ color: '#AE1010', fontWeight: 'bold' }}>
+                    {' '}
+                    {tableName} میز
+                  </h2>
+                </div>
 
-              <div className='flex-column   py-5'>
-                <Link href={`/tableReserve/${table}/ordinary`}>
-                  <div className=' my-3'>
-                    <div
-                      className='mainBox'
-                      style={{ justifyContent: 'center' }}
-                    >
-                      <h6 style={{ fontWeight: 'bold ', fontSize: '15px' }}>
-                        میز معمولی
-                      </h6>
+                <div className='flex-column   py-5'>
+                  <Link href={`/tableReserve/${table}/ordinary`}>
+                    <div className=' my-3'>
+                      <div
+                        className='mainBox'
+                        style={{ justifyContent: 'center' }}
+                      >
+                        <h6 style={{ fontWeight: 'bold ', fontSize: '15px' }}>
+                          میز معمولی
+                        </h6>
+                      </div>
                     </div>
-                  </div>
-                </Link>
-                <Link href={`/tableReserve/${table}/vip`}>
-                  <div className=' my-3'>
-                    <div
-                      className='mainBox'
-                      style={{ justifyContent: 'center' }}
-                    >
-                      <h6 style={{ fontWeight: 'bold ', fontSize: '15px' }}>
-                        میز vip
-                      </h6>
+                  </Link>
+                  <Link href={`/tableReserve/${table}/vip`}>
+                    <div className=' my-3'>
+                      <div
+                        className='mainBox'
+                        style={{ justifyContent: 'center' }}
+                      >
+                        <h6 style={{ fontWeight: 'bold ', fontSize: '15px' }}>
+                          میز vip
+                        </h6>
+                      </div>
                     </div>
-                  </div>
-                </Link>
+                  </Link>
+                </div>
               </div>
+              <Footer />
             </div>
-            <Footer />
           </>
         ) : (
           <ForceLogin />
