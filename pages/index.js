@@ -21,12 +21,13 @@ export default function Home() {
     <>
       <div className='text-center div' ref={elementRef}>
         <div className='div py-3'>
-          <div className='mainResponsive'>
-            <div style={{ marginTop: '60px' }}>
-              <h1 style={{ fontWeight: 'bold' }}>لوتوس</h1>
+          <div className='mainImg'>
+            <div style={{ width: '100%' }}>
+              <Image src={mainImg} alt='mainImg' />
             </div>
-
-            <div className='flex-column py-5'>
+          </div>
+          <div className='mainResponsive mTop'>
+            <div className='flex-column py-2'>
               <div className=' mt-3'>
                 <Link href={!cookies['user'] ? '/welcome' : '/tableReserve'}>
                   <div className='mainBox'>

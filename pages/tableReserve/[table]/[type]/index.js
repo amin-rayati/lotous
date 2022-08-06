@@ -57,7 +57,7 @@ export default function Home() {
           <></>
         ) : state ? (
           <>
-            <div className='div py-3'>
+            <div className='div '>
               <div className='mainResponsive'>
                 <Header />
 

@@ -137,7 +137,7 @@ export default function Home({ data }) {
         ) : state ? (
           <>
             {' '}
-            <div className='div py-3'>
+            <div className='div '>
               <div className='mainResponsive'>
                 <Header />
 

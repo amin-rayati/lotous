@@ -90,11 +90,10 @@ export default function Home() {
         }
       )
       .then((response) => {
-        console.log(response)
-        // if (response.data.isDone) {
-        //   setLoading(false)
-        //   router.push(response.data.data)
-        // }
+        if (response.data.isDone) {
+          setLoading(false)
+          router.push(response.data.data)
+        }
       })
       .catch((error) => {
         console.error(error)
