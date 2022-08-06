@@ -16,7 +16,7 @@ import Loading from '../../components/Loader/Loader'
 export default function Home() {
   const router = useRouter()
   const [loading, setLoading] = useState(false)
-
+  const { status } = router.query
   const [state, setState] = useState()
   const [cookies, setCookie, removeCookie] = useCookies(['user'])
   const elementRef = useRef(null)
@@ -36,7 +36,7 @@ export default function Home() {
 
   const deleteTable = (table) => {
     Swal.fire({
-      title: 'آیا  این میز را حذف کنید',
+      title: 'آیا  این میز را حذف میکنید',
       type: 'warning',
       showCancelButton: true,
       confirmButtonColor: '#3085d6',
@@ -114,6 +114,10 @@ export default function Home() {
     if (cookies['user']) {
       getIndividualInfo()
     }
+    if (status) {
+      setCart({})
+      window.localStorage.clear()
+    }
   }, [router])
 
   return (
@@ -139,54 +143,54 @@ export default function Home() {
                       className='cardBox'
                       style={{ justifyContent: 'center' }}
                     >
-                      {cart ? (
-                        cart.length !== 0 ? (
-                          Object.values(cart).map((e) => {
-                            return (
-                              <>
-                                <div
-                                  className='d-flex'
-                                  style={{ justifyContent: 'space-around' }}
+                      {Object.values(cart).length !== 0 ? (
+                        Object.values(cart).map((e) => {
+                          return (
+                            <>
+                              <div
+                                className='d-flex'
+                                style={{ justifyContent: 'space-around' }}
+                              >
+                                <FaTrash
+                                  onClick={() => {
+                                    deleteTable(e.table)
+                                  }}
+                                  style={{
+                                    color: '#ae1010',
+                                    cursor: 'pointer',
+                                  }}
+                                  size={15}
+                                />
+                                <h6 style={{ fontSize: '12px' }}>
+                                  {nummber(e.price)}
+                                </h6>
+                                <h6
+                                  style={{
+                                    fontSize: '12px',
+                                    fontWeight: 'bolder',
+                                  }}
                                 >
-                                  <FaTrash
-                                    onClick={() => {
-                                      deleteTable(e.table)
-                                    }}
-                                    style={{
-                                      color: '#ae1010',
-                                      cursor: 'pointer',
-                                    }}
-                                    size={15}
-                                  />
-                                  <h6 style={{ fontSize: '12px' }}>
-                                    {nummber(e.price)}
-                                  </h6>
-                                  <h6
-                                    style={{
-                                      fontSize: '12px',
-                                      fontWeight: 'bolder',
-                                    }}
-                                  >
-                                    {e.type == 'ordinary' ? 'عادی' : 'vip'}{' '}
-                                    {e.table.tableTypeName} میز
-                                  </h6>
-                                </div>
-                                <hr />
-                              </>
-                            )
-                          })
-                        ) : (
-                          <div>
-                            <h6>سبد خرید شما خالی است</h6>{' '}
-                          </div>
-                        )
+                                  {e.type == 'ordinary' ? 'عادی' : 'vip'}{' '}
+                                  {e.table.tableTypeName} میز
+                                </h6>
+                              </div>
+                              <hr />
+                            </>
+                          )
+                        })
                       ) : (
-                        <></>
+                        <div>
+                          <h6>سبد خرید شما خالی است</h6>{' '}
+                        </div>
                       )}
                     </div>
-                    <button onClick={ReserveTable} className='continueBtn'>
-                      پرداخت
-                    </button>
+                    {Object.values(cart).length !== 0 ? (
+                      <button onClick={ReserveTable} className='continueBtn'>
+                        پرداخت
+                      </button>
+                    ) : (
+                      ''
+                    )}
                   </div>
                 </div>
               </div>
