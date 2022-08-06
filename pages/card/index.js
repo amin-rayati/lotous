@@ -113,7 +113,7 @@ export default function Home() {
     if (cookies['user']) {
       getIndividualInfo()
     }
-    if (status) {
+    if (status == 'true') {
       setCart({})
       window.localStorage.clear()
     }
