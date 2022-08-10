@@ -1,6 +1,5 @@
 import Head from 'next/head'
 import { React, useEffect, useRef, useState } from 'react'
-import Link from 'next/link'
 import Footer from '../../components/Footer/Footer'
 import { useRouter } from 'next/router'
 
@@ -11,7 +10,6 @@ import ForceLogin from '../../components/forceLogin/ForceLogin'
 import { FaTrash } from 'react-icons/fa'
 import axios from 'axios'
 import Swal from 'sweetalert2'
-import Loading from '../../components/Loader/Loader'
 
 export default function Home() {
   const router = useRouter()

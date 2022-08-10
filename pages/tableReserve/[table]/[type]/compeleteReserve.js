@@ -13,7 +13,6 @@ import { Modal, ThemeProvider } from 'react-bootstrap'
 
 import Header from '../../../../components/Header/Header'
 import { useProjectContext } from '../../../../context/ProjectProvider'
-import Loading from '../../../../components/Loader/Loader'
 import ForceLogin from '../../../../components/forceLogin/ForceLogin'
 
 export default function Home({ data }) {
